@@ -1,0 +1,22 @@
+.nav-layout ul{
+    display: inline-block;
+    /* background-color: #1E293B; */
+}
+.nav-layout ul li  {
+    list-style: none;
+    font: 1em sans-serif;
+    padding: 0.5rem;
+    text-align: left;
+    cursor: pointer;
+    margin-top: 2rem;
+    /* background-color: gainsboro; */
+}
+.link{
+    text-decoration: none;
+    color: #ffff;
+}
+.nav-layout ul li:hover{
+    background-color: #F59E0B;
+    color: #1E3A8A;
+    border-radius: 0.5rem;
+}

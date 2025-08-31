@@ -1,0 +1,20 @@
+/* main container */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh; /* safer than height: 100vh */
+  background-color: #f0f0f0;
+}
+
+
+/* --- right side --- */
+.right {
+  flex: 1;
+  background-color: #F9FAFB;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content{
+  flex: 1;
+}
