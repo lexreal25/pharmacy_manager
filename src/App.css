@@ -1,11 +1,56 @@
-/* main container */
 .main-container {
   display: flex;
-  flex-direction: row;
-  min-height: 100vh; /* safer than height: 100vh */
+  max-height: 100vh;
   background-color: #f0f0f0;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 60px);
+  padding: 0.5rem;
+}
+
+.container .form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.form-container label {
+  font-size: 1.2rem;
+  padding: 5px;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+  padding: 1rem;
+  font-size: large;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+}
+
+.main-container .table-container {
+  flex: 2;
+}
+
+.main-container .form-container {
+  flex: 1;
+  height: fit-content;
+  margin-right: 1rem;
+  border: 1px solid #ccc;
+}
+
+.form-container button {
+  background-color: rgb(7, 139, 205);
+  /* padding: 1rem; */
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 /* --- right side --- */
 .right {
@@ -15,6 +60,6 @@
   flex-direction: column;
 }
 
-.dashboard-content{
+.dashboard-content {
   flex: 1;
 }

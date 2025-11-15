@@ -1,0 +1,12 @@
+
+.form-container textarea{
+    padding:0.5rem;
+    font-size: normal;
+    max-height: 100px;
+}
+
+.table-container input{
+    padding: 1rem;
+    width: 400px;
+    margin-bottom:1.2rem;
+}

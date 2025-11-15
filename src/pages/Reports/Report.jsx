@@ -1,10 +1,19 @@
 import React from 'react'
-import { Button } from '../../components/Button'
+import './Report.css'
+import SalesChart from '../../components/SalesChart';
+import { ExpenesesReport } from '../../components/BarChart';
 
 export const Report = () => {
   return (
-    <Button name="Report" />    
+    <div className='container'>
+      <div className="layout">
+         <SalesChart/>
+      </div>
+     <div className="expenses">
+      <ExpenesesReport/>
+     </div>
+    </div>   
   )
 }
 
-export default Report
+export default Report;

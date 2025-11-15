@@ -1,0 +1,21 @@
+
+#search-box,#search-btn{
+    padding: 5px;
+    font-size: 15px;
+}
+#search-box{
+    border: 1px solid #ccc;
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    outline: none;
+    width: 250px;
+    height: 30px;
+}
+#search-btn{
+    height: 42px;
+    cursor: pointer;
+    border: none ;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    background-color: #187617;
+}

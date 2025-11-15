@@ -1,56 +1,123 @@
 import React from "react";
+import sales from "../../assets/salesData";
 import CustomizedTables from "../../components/Table";
+import "./SalesPage.css";
+import { medicationData } from "../../assets/medicine";
 import Button from "../../components/Button";
 
-const sales = [
-  {
-    itemName: "Paracetamol",
-    quantitySold: 20,
-    saleDate: "2024-10-01",
-    totalAmount: 100.0,
-    customerName: "John Doe",
-  },
-  {
-    itemName: "Ibuprofen",
-    quantitySold: 15,
-    saleDate: "2024-10-02",
-    totalAmount: 120.0,
-    customerName: "Jane Smith",
-  },
-  {
-    itemName: "Aspirin",
-    quantitySold: 30,
-    saleDate: "2024-10-03",
-    totalAmount: 90.0,
-    customerName: "Alice Johnson",
-  },
-  {
-    itemName: "Amoxicillin",
-    quantitySold: 10,
-    saleDate: "2024-10-04",
-    totalAmount: 120.0,
-    customerName: "Bob Brown",
-  },
-  {
-    itemName: "Cough Syrup",
-    quantitySold: 25,
-    saleDate: "2024-10-05",
-    totalAmount: 187.5,
-    customerName: "Charlie Davis",
-  },
-  {
-    itemName: "Vitamin C",
-    quantitySold: 40,
-    saleDate: "2024-10-06",
-    totalAmount: 200.0,
-    customerName: "Diana Evans",
-  },
-];
 export const SalesPage = () => {
+  const [text, setText] = React.useState("ADD ITEM");
+
+  const [formData, setFormData] = React.useState({
+    customername: "",
+    itemname: "",
+    quantitysold: "",
+    totalamount: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleClick = (e, row) => {
+    e.preventDefault();
+    setText("UPDATE SALES");
+    setFormData({
+      itemname: row.itemName || "",
+      quantitysold: row.quantitySold || "",
+      customername: row.customerName || "",
+      totalamount: row.totalAmount || "",
+      description: row.description || "",
+    });
+  };
+
+  const resetForm = () => {
+    setFormData({
+      itemname: "",
+      quantitysold: "",
+      customername: "",
+      totalamount: "",
+      description: "",
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (text === "UPDATE") {
+      setText("ADD SALES");
+    }
+    resetForm();
+    console.log(formData);
+  };
+
   return (
     <div className="container">
-      <Button name="Add Sales" />
-      <CustomizedTables props={sales} />
+      <form className="form-container">
+        <label htmlFor="customer">Customer Name : </label>
+        <input
+          type="text"
+          placeholder="enter customer name"
+          id="customer"
+          onChange={handleChange}
+          name="customername"
+          value={formData?.customername || ""}
+        />
+
+        <label htmlFor="item">Select Medicine: </label>
+        <select name="item" id="medicine" onChange={handleChange}>
+          {medicationData.map((item, index) => (
+            <option value="paracetamol" key={index}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="quantity">Quantity : </label>
+        <input
+          type="text"
+          placeholder="enter quantity"
+          id="quantity"
+          onChange={handleChange}
+          name="quantitysold"
+          value={formData?.quantitysold || ""}
+        />
+
+        <label htmlFor="price">Price (GH&#8373;): </label>
+        <input
+          type="text"
+          placeholder="enter price"
+          id="price"
+          onChange={handleChange}
+          name="price"
+          value={formData?.price || ""}
+        />
+
+        <label htmlFor="desc">Description : </label>
+        <textarea
+          name="description"
+          id="desc"
+          placeholder="leave a note"
+          onChange={handleChange}
+          value={formData?.description || ""}
+        ></textarea>
+        <label htmlFor="" style={{ padding: "0.5rem" }}>
+          Total (GH&#8373;): {formData?.totalamount}
+        </label>
+        {text === "UPDATE SALES" && <button>VIEW RECEIPT</button>}
+        <button onClick={handleSubmit} style={{ marginBottom: "5px" }}>
+          {text}
+        </button>
+        {text === "UPDATE SALES" && <Button name="DELETE SALES" />}
+      </form>
+      <div className="table-container">
+        <CustomizedTables props={sales} selectedItem={handleClick} />
+      </div>
     </div>
   );
 };

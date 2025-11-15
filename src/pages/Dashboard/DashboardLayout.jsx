@@ -1,39 +1,70 @@
 import React from "react";
 import "./DashboardLayout.css";
 import Card from "../../components/Card.jsx";
-import SalesPage from "../SalesPage/SalesPage.jsx";
-import Customers from "../CustomersPage/Customers.jsx";
-import InventoryPage from "../InventoryPage/Inventory.jsx";
-import Medicine from "../MedicinePage/Medicine.jsx";
+import SalesChart from "../../components/SalesChart.jsx";
+
 
 export const DashboardLayout = () => {
+  const cards = [
+    { name: "Total Sales", value: 10000, icon: "GH₵" },
+    { name: "Total Expenses", value: 15, icon: "GH₵" },
+    { name: "Total Medicine", value: 13 },
+    { name: "Suppliers", value: 20 },
+    { name: "Customers", value: 8 },
+    // { name: "Employees", value: 5 },
+  ];
+
+  const inventorySummary = [
+    // { status: "Total Products", value: 150 },
+    { status: "Out of Stock", value: 5 },
+    { status: "Low Stock", value: 10 },
+    { status: "Expired Products", value: 2 },
+  ];
+
   return (
     <div className="dashboard-layout">
       <div className="top">
-        <Card name="Total Sales" value={10000} icon='GH&#8373;' />
-        <Card name="Total Expenses" value={15} icon='GH&#8373;' />
-        <Card name="Total Medicine" value={13} />
-        <Card name="Suppliers" value={20}  />
-        <Card name="Customers" value={8} />
+        {cards.map((card, index) => (
+          <Card
+            key={index}
+            name={card.name}
+            value={card.value}
+            icon={card.icon}
+          />
+        ))}
       </div>
 
       <div className="lower-section">
         <div className="left-section">
-          <div className="sales-container">
-            <h2>Sales List</h2>
-            <SalesPage />
+          <div className="inventory-container">
+            <h2>Inventory Summary</h2>
+            <div className="inventory-summary-list">
+              {inventorySummary.map((item, index) => (
+                <div
+                  key={index}
+                  className="inventory-summary"
+                  data-status={item.status} // 👈 dynamic attribute
+                >
+                  <Card name={item.status} value={item.value}  />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="customers-container">
-            <h2>Customers List</h2>
-            <Customers />
+          <div className="sales-container">
+            <h2>Sales Summary</h2>
+            <SalesChart />
           </div>
         </div>
 
         <div className="right-section">
-          <h2>Medicine List</h2>
-          <Medicine />
-          <h2>Inventory</h2>
-          <InventoryPage />
+          <div className="expenses-container">
+            <h2>Expenses Summary</h2>
+            {/* <ExpenesesReport /> */}
+          </div>
+          <div className="">
+            <h2>Inventory Summary</h2>
+            <SalesChart />
+          </div>
         </div>
       </div>
     </div>

@@ -1,11 +1,15 @@
-import React from 'react'
-import './Button.css'
+import React from "react";
+import "./Button.css";
 
-
- const Button = (props) => {
+const Button = (props) => {
   return (
-    <button className='btn-general'>{props.name}</button>
-  )
-}
+    <button
+      type="submit"
+      style={{ backgroundColor: "red", marginTop: "0.2rem" }}
+    >
+      {props.name}
+    </button>
+  );
+};
 
 export default Button;

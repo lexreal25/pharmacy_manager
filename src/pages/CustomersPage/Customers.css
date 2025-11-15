@@ -1,6 +1,11 @@
-.container{
-    flex: 1;
+
+.form{
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
+ 
+}
+
+.form button{
+    margin-top: 1rem;
 }

@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <div className="left">
         <div className="business-name">
-          <h2>Pharmacy Management System</h2>
+          <h2>PMS</h2>
           <span className="slogan">Quanlity Health Service</span>
         </div>
         {/* menui-items */}

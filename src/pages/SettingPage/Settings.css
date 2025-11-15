@@ -1,0 +1,21 @@
+.settings-container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* overflow-y: scroll; */
+}
+
+.user-settings{
+    flex: 1;
+    display: flex;
+
+}
+.general-settings{
+    flex: 1;
+    background-color: blue;
+}
+.status-select[data-status="Active"] {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+}

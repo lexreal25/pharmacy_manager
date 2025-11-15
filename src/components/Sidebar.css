@@ -3,11 +3,9 @@
   flex: 0 0 150px;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
-  /* align-items: center; */
+  height: 100vh ;
+  gap: 0.5rem;
   background-color:rgba(0, 0, 0, 0.93); /*#1E3A8A*/
-  padding: 0.2rem;
-  transition: transform 0.3s ease-in-out; /* for slide effect */
 }
 
 .left .business-name {
@@ -21,6 +19,5 @@
 }
 .left .business-name span {
   color: #f0f0f0;
-  text-align: center;
   font-style: italic;
 }

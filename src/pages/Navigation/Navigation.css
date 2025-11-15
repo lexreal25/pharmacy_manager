@@ -1,17 +1,21 @@
 .nav-layout ul{
     display: inline-block;
-    /* background-color: #1E293B; */
+    align-items: center; 
+    margin: 5px;
 }
-.nav-layout ul li  {
+
+.nav-layout ul .list-item  {
     list-style: none;
     font: 1em sans-serif;
     padding: 0.5rem;
-    text-align: left;
     cursor: pointer;
     margin-top: 2rem;
-    /* background-color: gainsboro; */
+    /* background-color: gainsboro;  */
 }
 .link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
     color: #ffff;
 }

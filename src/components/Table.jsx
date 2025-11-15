@@ -1,59 +1,91 @@
-import { styled } from "@mui/material/styles";
+import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { TableVirtuoso } from "react-virtuoso";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+// Virtuoso components wrapper
+const VirtuosoTableComponents = {
+  Scroller: React.forwardRef((props, ref) => (
+    <TableContainer component={Paper} {...props} ref={ref} />
+  )),
+  Table: (props) => (
+    <Table
+      {...props}
+      sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
+    />
+  ),
+  TableHead: React.forwardRef((props, ref) => (
+    <TableHead {...props} ref={ref} />
+  )),
+  TableRow,
+  TableBody: React.forwardRef((props, ref) => (
+    <TableBody {...props} ref={ref} />
+  )),
+};
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+// render table header
+function fixedHeaderContent(headers) {
+  return (
+    <TableRow>
+      {headers.map((col) => (
+        <TableCell
+          key={col.key}
+          variant="head"
+          align={col.numeric ? "right" : "left"}
+          style={{ width: col.width }}
+          sx={{ backgroundColor: "background.paper" }}
+        >
+          {col.label}
+        </TableCell>
+      ))}
+    </TableRow>
+  );
+}
 
-export default function CustomizedTables({ props }) {
-  const headers = Object.keys(props[0]);
+// render table row
+function rowContent(_index, row, headers,selectedItem) {
+  return (
+    <React.Fragment>
+      {headers.map((col) => (
+        <TableCell
+          onClick={(e) => selectedItem(e,row)}
+          key={col.key}
+          align={col.numeric ? "right" : "left"}
+          style={{ cursor: "pointer" }}
+        >
+          {row[col.key]}
+        </TableCell>
+      ))}
+    </React.Fragment>
+  );
+}
+
+// Reusable component
+export default function CustomizedTables({ props,selectedItem }) {
+  if (!props || props.length === 0) return null;
+
+  // Build headers from keys of first row
+  const headers = Object.keys(props[0]).map((key) => ({
+    key,
+    label: key.toUpperCase(),
+    numeric: false,
+    width: 100,
+    hight: 100,
+  }));
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            {headers.map((key) => (
-              <StyledTableCell align="left" key={key}>
-                {key.toUpperCase()}
-              </StyledTableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.map((row, index) => (
-            <StyledTableRow key={index}>
-              {headers.map((key) => (
-                <StyledTableCell align="left" key={key}>
-                  {row[key]}
-                </StyledTableCell>
-              ))}
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Paper style={{ height:'100%', width: "100%" }}>
+      <TableVirtuoso
+        data={props}
+        components={VirtuosoTableComponents}
+        fixedHeaderContent={() => fixedHeaderContent(headers)}
+        itemContent={(index, row) => rowContent(index, row, headers,selectedItem)}
+      />
+    </Paper>
   );
 }

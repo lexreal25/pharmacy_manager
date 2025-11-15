@@ -12,17 +12,24 @@
 }
 
 /* Top summary cards */
-.dashboard-layout .top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+
+.dashboard-layout .top,
+.dashboard-layout .inventory-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
 }
 
-.dashboard-layout .top > * {
+@media screen and (max-width: 600px) {
+  .dashboard-layout .top {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+}
+
+.dashboard-layout .top>* {
   flex: 0 0 180px;
-  padding: 1rem;
   border-radius: 0.5rem;
   background-color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -44,7 +51,6 @@
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -58,7 +64,7 @@
   background-color: #fefefe;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -66,3 +72,28 @@ h2 {
   font-size: 1.2rem;
   color: #333;
 }
+
+.inventory-summary[data-status="Total Products"] {
+  border-left: 5px solid #3498db;
+}
+.inventory-summary[data-status="Out of Stock"] {
+  border-left: 5px solid #e74c3c;
+}
+
+.inventory-summary[data-status="Low Stock"] {
+  border-left: 5px solid #f39c12;
+}
+
+.inventory-summary[data-status="Expired Products"] {
+  border-left: 5px solid #8e44ad;
+}
+
+.inventory-summary {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+

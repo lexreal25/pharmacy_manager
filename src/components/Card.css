@@ -3,10 +3,9 @@
   min-width: 180px;
   text-align: center;
   background-color: #fff;
-  border-radius: 0.75rem; /* nice rounded corners */
+  border-radius: 0.75rem; 
   padding: 1rem 1.25rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.80); /* soft shadow */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
   cursor: pointer;
 }
 

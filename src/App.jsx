@@ -8,22 +8,28 @@ import Customers from "./pages/CustomersPage/Customers.jsx";
 import InventoryPage from "./pages/InventoryPage/Inventory.jsx";
 import SalesPage from "./pages/SalesPage/SalesPage.jsx";
 import Medicine from "./pages/MedicinePage/Medicine.jsx";
+import Report from "./pages/Reports/Report.jsx";
+import Settings from "./pages/SettingPage/SettingsPage.jsx";
+import SuppliersPage from "./pages/SuppliersPage/SuppliersPage.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="main-container">
         <Sidebar />
-
         <div className="right">
           <Topbar />
           <Routes>
             <Route path="/dashboard" element={<DashboardLayout />} />
             <Route path="/customers" element={<Customers />} />
-            <Route path="/Inventory" element={<InventoryPage />} />
-            <Route path="/Sales" element={<SalesPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/sales" element={<SalesPage />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/medicine" element={<Medicine />} />
+            <Route path="/report" element={<Report />} />
+            <Route path="/suppliers" element={<SuppliersPage />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<DashboardLayout />} />
           </Routes>
         </div>
       </div>
