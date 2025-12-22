@@ -1,4 +1,3 @@
-import React from "react";
 import "./Topbar.css";
 import NameComponent from "./NameComponent";
 import { SearchButton } from "./SearchButton";

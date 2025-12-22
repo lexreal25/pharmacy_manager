@@ -14,7 +14,7 @@ import { LocalShipping, MoneyOff } from "@mui/icons-material";
 export const Navigation = () => {
   
   return (
-    <div className="nav-layout" style={{overflowY:"scroll"}}>
+    <div className="nav-layout">
       <ul>
         <li className="list-item">
           <Link to="/dashboard" className="link">
