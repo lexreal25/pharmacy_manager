@@ -19,18 +19,19 @@ function App() {
         <Sidebar />
         <div className="right">
           <Topbar />
-          <Routes>
-            <Route path="/dashboard" element={<DashboardLayout />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/inventory" element={<InventoryPage />} />
-            <Route path="/sales" element={<SalesPage />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/medicine" element={<Medicine />} />
-            <Route path="/report" element={<Report />} />
-            <Route path="/suppliers" element={<SuppliersPage />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<DashboardLayout />} />
-          </Routes>
+          <div className="dashboard-content">
+            <Routes>
+              <Route path="/dashboard" element={<DashboardLayout />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/inventory" element={<InventoryPage />} />
+              <Route path="/sales" element={<SalesPage />} />
+              <Route path="/medicine" element={<Medicine />} />
+              <Route path="/report" element={<Report />} />
+              <Route path="/suppliers" element={<SuppliersPage />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<DashboardLayout />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </BrowserRouter>

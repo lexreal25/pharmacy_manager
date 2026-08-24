@@ -6,48 +6,84 @@ import Button from "../../components/Button";
 
 const Settings = () => {
   const [txt, setText] = React.useState("ADD USER");
-  
-  const handleCick = (e,row) => {
+
+  const handleClick = (e, row) => {
     e.preventDefault();
-    if(txt === "ADD USER"){
-      setText("UPDATE USER")
-    }
+    setText("UPDATE USER");
     console.log(row);
-  }
+  };
+
   return (
-    <div className="container">
+    <div className="settings-wrapper">
+      
+      {/* PAGE HEADER */}
+      <div className="settings-header">
+        <h1>System Settings</h1>
+        <p>Manage users, roles, and system access permissions.</p>
+      </div>
+
       <div className="settings-container">
-        <div className="user-settings">
+
+        {/* LEFT: USER FORM */}
+        <div className="user-form-section">
           <form className="form-container">
             <h2>User Management</h2>
-            <input type="text" placeholder="Full Name" required />
-            <input type="text" placeholder="Username" required/>
-            <input
-              type="password"
-              placeholder="Password"
-              pattern=".{8,}"
-              required
-              title="Password must be 8 characters"
-            />
-            <input type="email" placeholder="Email" required />
-            <select>
-              <option value="">Select Role</option>
-              <option value="Admin">Admin</option>
-              <option value="User">User</option>
-            </select>
-            <select required>
-              <option value="">Select Status</option>
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-            </select>
+
+            <div className="form-group">
+              <label>Full Name</label>
+              <input type="text" placeholder="Full Name" required />
+            </div>
+
+            <div className="form-group">
+              <label>Username</label>
+              <input type="text" placeholder="Username" required />
+            </div>
+
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                pattern=".{8,}"
+                required
+                title="Password must be 8 characters"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="Email" required />
+            </div>
+
+            <div className="form-group">
+              <label>Role</label>
+              <select>
+                <option value="">Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Status</label>
+              <select className="status-select">
+                <option value="">Select Status</option>
+                <option value="Active" data-status="Active">Active</option>
+                <option value="Inactive" data-status="Inactive">Inactive</option>
+              </select>
+            </div>
+
             <button type="submit">{txt}</button>
-            {txt === "UPDATE USER" && <Button name="DELETE USER" />}
+            {txt === "UPDATE USER" && <Button name="DELETE USER" style={{backgroundColor:'red !important'}} />}
           </form>
-          <CustomizedTables props={users} selectedItem={handleCick} />
         </div>
-        {/* <div className="general-settings">
-          <h2>General Settings</h2>
-        </div> */}
+
+        {/* RIGHT: USER TABLE */}
+        <div className="user-table-section">
+          <h2>Registered Users</h2>
+          <CustomizedTables props={users} selectedItem={handleClick} />
+        </div>
+
       </div>
     </div>
   );

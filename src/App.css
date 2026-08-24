@@ -1,65 +1,69 @@
+/* MAIN LAYOUT */
 .main-container {
   display: flex;
-  max-height: 100vh;
+  height: 100vh;
   background-color: #f0f0f0;
+  overflow: hidden;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  height: calc(100vh - 60px);
-  padding: 0.5rem;
-}
-
-.container .form-container {
+/* RIGHT SIDE (Topbar + Content) */
+.right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  background-color: #F9FAFB;
+}
+
+/* CONTENT AREA */
+.dashboard-content {
+  flex: 1;
+  overflow-y: auto;
   padding: 1rem;
 }
 
+/* FORM + TABLE LAYOUT (Inventory, Customers, etc.) */
+.container {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+}
+
+/* FORM SECTION */
+.form-container {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+}
+
 .form-container label {
-  font-size: 1.2rem;
-  padding: 5px;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 .form-container input,
 .form-container select,
 .form-container button {
-  padding: 1rem;
-  font-size: large;
+  padding: 0.8rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
-  margin-top: 1rem;
-}
-
-.main-container .table-container {
-  flex: 2;
-}
-
-.main-container .form-container {
-  flex: 1;
-  height: fit-content;
-  margin-right: 1rem;
-  border: 1px solid #ccc;
+  margin-top: 0.8rem;
+  border-radius: 4px;
 }
 
 .form-container button {
   background-color: rgb(7, 139, 205);
-  /* padding: 1rem; */
   color: #fff;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-/* --- right side --- */
-.right {
-  flex: 1;
-  background-color: #F9FAFB;
-  display: flex;
-  flex-direction: column;
-}
-
-.dashboard-content {
-  flex: 1;
+/* TABLE SECTION */
+.table-container {
+  flex: 2;
+  background: #fff;
+  border-radius: 6px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  overflow-y: auto;
 }

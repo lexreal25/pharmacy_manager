@@ -1,24 +1,54 @@
-header {
+/* ================================
+   TOPBAR WRAPPER
+=================================== */
+.topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
-  background-color: #F9FAFB;
-  border: 1px solid #D1D5DB;
+
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #d1d5db;
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
+/* ================================
+   HAMBURGER MENU
+=================================== */
 .humburger {
   display: flex;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
 }
+
 .humburger div {
-  width: 30px;
+  width: 28px;
   height: 3px;
-  background-color: #1E3A8A;
-  transition: background-color 0.3s;
+  background-color: #1e3a8a;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
+
 .humburger:hover div {
-  background-color: #F59E0B;
+  background-color: #f59e0b;
+  transform: translateX(2px);
+}
+
+/* ================================
+   RESPONSIVE
+=================================== */
+@media screen and (max-width: 600px) {
+  .topbar {
+    padding: 0.5rem;
+  }
+
+  .search-bar {
+    display: none; /* Hide search on small screens */
+  }
 }

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import CustomizedTables from "../../components/Table";
 import suppliers from "../../assets/suppliersData";
 import Button from "../../components/Button";
+import "./SuppliersPage.css";
 
 export const SuppliersPage = () => {
   const [txt, setText] = useState("ADD SUPPLIER");
-  
+
   const [formData, setFormData] = useState({
     supplierName: "",
     contact: "",
@@ -16,8 +17,8 @@ export const SuppliersPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
@@ -25,6 +26,7 @@ export const SuppliersPage = () => {
   const handleClick = (e, row) => {
     e.preventDefault();
     setText("UPDATE SUPPLIER");
+
     setFormData({
       supplierName: row.supplierName || "",
       contact: row.contact || "",
@@ -33,64 +35,61 @@ export const SuppliersPage = () => {
       address: row.address || "",
     });
   };
+
   return (
-    <div className="container">
-      <form action="" className="form-container">
-        <label htmlFor="supplierName">Supplier Name</label>
+    <div className="suppliers-container">
+      <form className="suppliers-form">
+        <label>Supplier Name</label>
         <input
           type="text"
-          id="supplierName"
           name="supplierName"
-          value={formData?.supplierName || ""}
+          value={formData.supplierName}
           onChange={handleChange}
           placeholder="Supplier Name"
         />
 
-        <label htmlFor="contact">Contact Name</label>
+        <label>Contact Name</label>
         <input
           type="text"
-          id="contact"
           name="contact"
-          value={formData?.contact || ""}
+          value={formData.contact}
           onChange={handleChange}
           placeholder="Contact Name"
         />
 
-        <label htmlFor="phone">Phone</label>
+        <label>Phone</label>
         <input
           type="text"
-          id="phone"
           name="phone"
-          placeholder="Phone"
+          value={formData.phone}
           onChange={handleChange}
-          value={formData?.phone || ""}
+          placeholder="Phone"
         />
 
-        <label htmlFor="email">Email</label>
+        <label>Email</label>
         <input
           type="email"
-          id="email"
           name="email"
-          placeholder="Email"
+          value={formData.email}
           onChange={handleChange}
-          value={formData?.email || ""}
+          placeholder="Email"
         />
 
-        <label htmlFor="address">Address</label>
+        <label>Address</label>
         <input
           type="text"
-          id="address"
           name="address"
-          placeholder="Address"
+          value={formData.address}
           onChange={handleChange}
-          value={formData?.address || ""}
+          placeholder="Address"
         />
+
         <button type="submit">{txt}</button>
-        {txt === "UPDATE SUPPLIER" && (
-          <Button name="DELETE SUPPLIER" />
-        )}
+
+        {txt === "UPDATE SUPPLIER" && <Button name="DELETE SUPPLIER" />}
       </form>
-      <div className="table-container">
+
+      <div className="suppliers-table">
         <CustomizedTables props={suppliers} selectedItem={handleClick} />
       </div>
     </div>

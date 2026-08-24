@@ -12,110 +12,124 @@ export const SalesPage = () => {
     customername: "",
     itemname: "",
     quantitysold: "",
+    price: "",
     totalamount: "",
     description: "",
   });
 
   const handleChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+
+      // Auto-calc total amount
+      if (name === "price" || name === "quantitysold") {
+        const qty = Number(updated.quantitysold);
+        const pr = Number(updated.price);
+        updated.totalamount = qty && pr ? qty * pr : "";
+      }
+
+      return updated;
+    });
   };
 
   const handleClick = (e, row) => {
     e.preventDefault();
     setText("UPDATE SALES");
+
     setFormData({
-      itemname: row.itemName || "",
-      quantitysold: row.quantitySold || "",
-      customername: row.customerName || "",
-      totalamount: row.totalAmount || "",
+      customername: row.customername || "",
+      itemname: row.itemname || "",
+      quantitysold: row.quantitysold || "",
+      price: row.price || "",
+      totalamount: row.totalamount || "",
       description: row.description || "",
     });
   };
 
   const resetForm = () => {
     setFormData({
+      customername: "",
       itemname: "",
       quantitysold: "",
-      customername: "",
+      price: "",
       totalamount: "",
       description: "",
     });
+    setText("ADD ITEM");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (text === "UPDATE") {
-      setText("ADD SALES");
-    }
-    resetForm();
     console.log(formData);
+    resetForm();
   };
 
   return (
-    <div className="container">
-      <form className="form-container">
-        <label htmlFor="customer">Customer Name : </label>
+    <div className="sales-container">
+      <form className="sales-form">
+        <label>Customer Name:</label>
         <input
           type="text"
-          placeholder="enter customer name"
-          id="customer"
-          onChange={handleChange}
           name="customername"
-          value={formData?.customername || ""}
+          value={formData.customername}
+          onChange={handleChange}
+          placeholder="Enter customer name"
         />
 
-        <label htmlFor="item">Select Medicine: </label>
-        <select name="item" id="medicine" onChange={handleChange}>
+        <label>Select Medicine:</label>
+        <select
+          name="itemname"
+          value={formData.itemname}
+          onChange={handleChange}
+        >
+          <option value="">Select Item</option>
           {medicationData.map((item, index) => (
-            <option value="paracetamol" key={index}>
+            <option value={item.name} key={index}>
               {item.name}
             </option>
           ))}
         </select>
-        <label htmlFor="quantity">Quantity : </label>
+
+        <label>Quantity:</label>
         <input
           type="text"
-          placeholder="enter quantity"
-          id="quantity"
-          onChange={handleChange}
           name="quantitysold"
-          value={formData?.quantitysold || ""}
+          value={formData.quantitysold}
+          onChange={handleChange}
+          placeholder="Enter quantity"
         />
 
-        <label htmlFor="price">Price (GH&#8373;): </label>
+        <label>Price (GH₵):</label>
         <input
           type="text"
-          placeholder="enter price"
-          id="price"
-          onChange={handleChange}
           name="price"
-          value={formData?.price || ""}
+          value={formData.price}
+          onChange={handleChange}
+          placeholder="Enter price"
         />
 
-        <label htmlFor="desc">Description : </label>
+        <label>Description:</label>
         <textarea
           name="description"
-          id="desc"
-          placeholder="leave a note"
+          value={formData.description}
           onChange={handleChange}
-          value={formData?.description || ""}
-        ></textarea>
-        <label htmlFor="" style={{ padding: "0.5rem" }}>
-          Total (GH&#8373;): {formData?.totalamount}
-        </label>
+          placeholder="Leave a note"
+        />
+
+        <label>Tax value (GH₵): %13</label>
+        <label>Discount (GH₵): 5</label>
+        <label>Total (GH₵): {formData.totalamount}</label>
+        
         {text === "UPDATE SALES" && <button>VIEW RECEIPT</button>}
-        <button onClick={handleSubmit} style={{ marginBottom: "5px" }}>
-          {text}
-        </button>
+
+        <button onClick={handleSubmit}>{text}</button>
+
         {text === "UPDATE SALES" && <Button name="DELETE SALES" />}
       </form>
-      <div className="table-container">
+
+      <div className="sales-table">
         <CustomizedTables props={sales} selectedItem={handleClick} />
       </div>
     </div>

@@ -1,29 +1,59 @@
+/* ================================
+   CARD WRAPPER
+=================================== */
 .dashboard-card {
   flex: 1;
   min-width: 180px;
-  text-align: center;
-  background-color: #fff;
-  border-radius: 0.75rem; 
-  padding: 1rem 1.25rem;
+
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.2rem 1.4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 
   cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
+/* Hover effect */
 .dashboard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
+/* ================================
+   CARD HEADER
+=================================== */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Title */
 .card-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #333;
+  color: #1f2937;
   margin: 0;
 }
 
-.card-value {
-  font-size: 1.25rem;
+/* Icon */
+.card-icon {
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #0077cc; /* highlight color */
-  margin-top: 0.5rem;
+  color: #6b7280;
+}
+
+/* ================================
+   VALUE
+=================================== */
+.card-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e3a8a; /* premium blue */
+  margin: 0;
 }

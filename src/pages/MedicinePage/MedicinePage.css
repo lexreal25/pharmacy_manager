@@ -1,0 +1,62 @@
+/* MAIN WRAPPER */
+.medicine-container {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+}
+
+/* FORM SECTION */
+.medicine-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.medicine-form label {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.medicine-form input,
+.medicine-form textarea {
+  padding: 0.8rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.medicine-form textarea {
+  max-height: 120px;
+  resize: vertical;
+}
+
+.medicine-form button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background-color: rgb(7, 139, 205);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* TABLE SECTION */
+.medicine-table {
+  flex: 2;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+  .medicine-container {
+    flex-direction: column;
+  }
+}

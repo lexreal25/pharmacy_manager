@@ -1,50 +1,59 @@
+/* ================================
+   MAIN DASHBOARD WRAPPER
+=================================== */
 .dashboard-layout {
   padding: 1rem;
   margin: 1rem;
   height: calc(100vh - 60px);
   background-color: #f9fafb;
   border-radius: 0.5rem;
-  overflow: auto;
-
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Top summary cards */
+/* ================================
+   HEADER
+=================================== */
+.dashboard-header h1 {
+  font-size: 1.8rem;
+  color: #1f2937;
+  margin-bottom: 0.2rem;
+}
 
-.dashboard-layout .top,
-.dashboard-layout .inventory-summary {
+.dashboard-header p {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* ================================
+   TOP SUMMARY CARDS
+=================================== */
+.top {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.2rem;
 }
 
-@media screen and (max-width: 600px) {
-  .dashboard-layout .top {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-
-}
-
-.dashboard-layout .top>* {
-  flex: 0 0 180px;
+.top > * {
   border-radius: 0.5rem;
   background-color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Lower section layout */
-.dashboard-layout .lower-section {
+/* ================================
+   LOWER SECTION
+=================================== */
+.lower-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 1rem;
-  flex: 2;
 }
 
-/* Shared styles for left and right sections */
+/* ================================
+   LEFT + RIGHT PANELS
+=================================== */
 .left-section,
 .right-section {
   flex: 1;
@@ -54,46 +63,73 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
-/* Optional containers for better styling control */
+/* ================================
+   PANEL CONTAINERS
+=================================== */
 .sales-container,
-.customers-container,
-.medicine-container,
-.inventory-container {
-  background-color: #fefefe;
-  padding: 0.5rem 1rem;
+.expenses-container,
+.inventory-container,
+.inventory-chart-container {
+  background-color: #ffffff;
+  padding: 0.8rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 h2 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
-  color: #333;
+  color: #1f2937;
 }
 
-.inventory-summary[data-status="Total Products"] {
-  border-left: 5px solid #3498db;
-}
-.inventory-summary[data-status="Out of Stock"] {
-  border-left: 5px solid #e74c3c;
-}
-
-.inventory-summary[data-status="Low Stock"] {
-  border-left: 5px solid #f39c12;
+/* ================================
+   INVENTORY SUMMARY GRID
+=================================== */
+.inventory-summary-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
 }
 
-.inventory-summary[data-status="Expired Products"] {
-  border-left: 5px solid #8e44ad;
-}
-
-.inventory-summary {
-  background-color: #fff;
+/* ================================
+   INVENTORY SUMMARY ITEM
+=================================== */
+.inventory-summary-item {
+  background-color: #ffffff;
   border-radius: 12px;
   padding: 1rem;
-  margin: 0.5rem 0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: all 0.2s ease;
+  border-left: 5px solid transparent;
 }
 
+/* Dynamic border colors */
+.inventory-summary-item[data-status="Out of Stock"] {
+  border-left-color: #e74c3c;
+}
+
+.inventory-summary-item[data-status="Low Stock"] {
+  border-left-color: #f39c12;
+}
+
+.inventory-summary-item[data-status="Expired Products"] {
+  border-left-color: #8e44ad;
+}
+
+/* Hover effect */
+.inventory-summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ================================
+   RESPONSIVE
+=================================== */
+@media screen and (max-width: 768px) {
+  .lower-section {
+    flex-direction: column;
+  }
+}

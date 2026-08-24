@@ -4,27 +4,23 @@ import { SearchButton } from "./SearchButton";
 import { useLocation } from "react-router";
 
 const Topbar = () => {
-  // const [menuOpen, setMenuOpen] = useState(false);
-
-  // const toggleMenuOpen = () => {
-  //   setMenuOpen(!menuOpen && alert(`Menu is now opened!`));
-  // };
+  const location = useLocation();
 
   return (
-    <>
-      {/* header container */}
-      <header>
-        <NameComponent />
-        {
-          useLocation().pathname !== "/dashboard" && <SearchButton />
-        }
-        {/* <div className="humburger" onClick={toggleMenuOpen}>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div> */}
-      </header>
-    </>
+    <header className="topbar">
+      <NameComponent />
+
+      {location.pathname !== "/dashboard" && <SearchButton />}
+
+      {/* Future hamburger menu */}
+      {/* 
+      <div className="humburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      */}
+    </header>
   );
 };
 

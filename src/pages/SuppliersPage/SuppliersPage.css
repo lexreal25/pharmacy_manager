@@ -1,12 +1,12 @@
 /* MAIN WRAPPER */
-.inventory-container {
+.suppliers-container {
   display: flex;
   gap: 1rem;
   height: 100%;
 }
 
 /* FORM SECTION */
-.inventory-form {
+.suppliers-form {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -16,14 +16,12 @@
   border: 1px solid #ccc;
 }
 
-.inventory-form label {
+.suppliers-form label {
   margin-top: 0.5rem;
   font-size: 1rem;
 }
 
-.inventory-form input,
-.inventory-form select,
-.inventory-form textarea {
+.suppliers-form input {
   padding: 0.8rem;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
@@ -31,12 +29,7 @@
   font-size: 1rem;
 }
 
-.inventory-form textarea {
-  max-height: 120px;
-  resize: vertical;
-}
-
-.inventory-form button {
+.suppliers-form button {
   margin-top: 1rem;
   padding: 0.8rem;
   background-color: rgb(7, 139, 205);
@@ -46,7 +39,7 @@
 }
 
 /* TABLE SECTION */
-.inventory-table {
+.suppliers-table {
   flex: 2;
   background: #fff;
   padding: 1rem;
@@ -57,7 +50,7 @@
 
 /* MOBILE */
 @media screen and (max-width: 768px) {
-  .inventory-container {
+  .suppliers-container {
     flex-direction: column;
   }
 }

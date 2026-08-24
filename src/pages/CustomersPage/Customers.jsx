@@ -35,49 +35,54 @@ const Customers = () => {
   };
 
   return (
-      <div className="container">
-          <form action="" className="form-container">
-            <label htmlFor="name">Name: </label>
-            <input
-              type="text"
-              placeholder="Enter name"
-              value={formData?.name || ""}
-              name="name"
-              onChange={handleChange}
-            />
-            <label htmlFor="contact">Contact: </label>
-            <input
-              type="text"
-              placeholder="Enter phone number"
-              value={formData?.contact || ""}
-              name="contact"
-              onChange={handleChange}
-            />
-            <label htmlFor="email">Email: </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={formData?.email || ""}
-              onChange={handleChange}
-            />
-            <label htmlFor="address">Address: </label>
-            <input
-              type="text"
-              placeholder="Enter address"
-              value={formData?.address}
-              onChange={handleChange}
-              name="address"
-            />
-            <button type="submit">{txt}</button>
-            {
-              txt === "UPDATE CUSTOMER" && <Button name="DELETE CUSTOMER" />
-            }
-          </form>
-        <div className="table-container">
-          <CustomizedTables props={customersData} selectedItem={handleClick} />
-        </div>
+    <div className="customers-container">
+      <form className="customers-form">
+        <label>Name:</label>
+        <input
+          type="text"
+          placeholder="Enter name"
+          value={formData.name}
+          name="name"
+          onChange={handleChange}
+        />
+
+        <label>Contact:</label>
+        <input
+          type="text"
+          placeholder="Enter phone number"
+          value={formData.contact}
+          name="contact"
+          onChange={handleChange}
+        />
+
+        <label>Email:</label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={formData.email}
+          name="email"
+          onChange={handleChange}
+        />
+
+        <label>Address:</label>
+        <input
+          type="text"
+          placeholder="Enter address"
+          value={formData.address}
+          name="address"
+          onChange={handleChange}
+        />
+
+        <button type="submit">{txt}</button>
+
+        {txt === "UPDATE CUSTOMER" && <Button name="DELETE CUSTOMER" />}
+      </form>
+
+      <div className="customers-table">
+        <CustomizedTables props={customersData} selectedItem={handleClick} />
       </div>
+    </div>
   );
 };
+
 export default Customers;

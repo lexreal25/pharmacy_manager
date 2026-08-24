@@ -4,8 +4,14 @@ import "./Card.css";
 export const Card = ({ name, value, icon }) => {
   return (
     <div className="dashboard-card">
-      <h3 className="card-title">{name}</h3>
-      {value && <p className="card-value" >{icon}{value}</p>}
+      <div className="card-header">
+        <h3 className="card-title">{name}</h3>
+        {icon && <span className="card-icon">{icon}</span>}
+      </div>
+
+      {value !== undefined && (
+        <p className="card-value">{value}</p>
+      )}
     </div>
   );
 };

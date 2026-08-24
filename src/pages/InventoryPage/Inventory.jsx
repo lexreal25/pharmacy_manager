@@ -17,10 +17,10 @@ export const InventoryPage = () => {
     supplier: "",
   });
 
-  // Handle click on table row
   const handleClick = (e, row) => {
-    e.preventDefault;
+    e.preventDefault();
     setText("UPDATE INVENTORY");
+
     setFormData({
       itemName: row.itemName || "",
       quantity: row.quantity || "",
@@ -33,101 +33,96 @@ export const InventoryPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  //handle submission
-  const handleSubmit = () => {
-    if (text === "UPDATE") {
-      restForm();
-    }
-    // console.log('add inventory action goes here');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     supplies.push(formData);
     console.log(supplies);
+
+    restForm();
   };
 
   const restForm = () => {
     setText("ADD INVENTORY");
     setFormData({
       itemName: "",
-      price: "",
       quantity: "",
-      supplier: "",
+      price: "",
       expiryDate: "",
       description: "",
+      supplier: "",
     });
   };
+
   return (
-    <div className="container">
-      <form className="form-container">
-        <label htmlFor="item">Item Name: </label>
-        <select name="itemName" id="" onChange={handleChange}>
+    <div className="inventory-container">
+      <form className="inventory-form">
+        <label>Item Name:</label>
+        <select name="itemName" onChange={handleChange} value={formData.itemName}>
+          <option value="">Select Item</option>
           {medicationData.map((med, index) => (
             <option value={med.name} key={index}>
               {med.name}
             </option>
           ))}
-          <option value="">Select Item</option>
         </select>
-        <label htmlFor="quantity">Quantity: </label>
+
+        <label>Quantity:</label>
         <input
           type="text"
-          placeholder="Enter quantity"
-          value={formData?.quantity || ""}
-          onChange={handleChange}
           name="quantity"
+          value={formData.quantity}
+          onChange={handleChange}
+          placeholder="Enter quantity"
         />
 
-        <label htmlFor="price">Unit Price (GH&#8373;): </label>
+        <label>Unit Price (GH₵):</label>
         <input
           type="text"
-          placeholder="Enter price"
-          value={formData?.price || ""}
-          onChange={handleChange}
           name="price"
+          value={formData.price}
+          onChange={handleChange}
+          placeholder="Enter price"
         />
 
-        <label htmlFor="expiry">Expiry Date: </label>
+        <label>Expiry Date:</label>
         <input
           type="date"
-          placeholder="Select expiry date"
-          value={formData?.expiryDate || ""}
-          onChange={handleChange}
           name="expiryDate"
-          id="expiry"
+          value={formData.expiryDate}
+          onChange={handleChange}
         />
 
-        <label htmlFor="supplier">Supplier: </label>
+        <label>Supplier:</label>
         <input
           type="text"
-          placeholder="Enter supplier name"
-          value={formData?.supplier || ""}
-          onChange={handleChange}
           name="supplier"
+          value={formData.supplier}
+          onChange={handleChange}
+          placeholder="Enter supplier name"
         />
 
-        <label htmlFor="desc">Description: </label>
+        <label>Description:</label>
         <textarea
           name="description"
-          id="desc"
-          placeholder="Leave a note"
-          value={formData?.description || ""}
+          value={formData.description}
           onChange={handleChange}
-        ></textarea>
-        <button type="submit" id="update_btn" onClick={handleSubmit}>
-          {text}
-        </button>
+          placeholder="Leave a note"
+        />
+
+        <button type="submit" onClick={handleSubmit}>{text}</button>
+
         {text === "UPDATE INVENTORY" && <Button name="DELETE INVENTORY" />}
       </form>
 
-      <div className="table-container">
-        {/* <SearchButton /> */}
+      <div className="inventory-table">
         <CustomizedTables props={supplies} selectedItem={handleClick} />
       </div>
     </div>
   );
 };
+
 export default InventoryPage;

@@ -1,6 +1,189 @@
-.layout{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+/* ================================
+   PAGE WRAPPER
+=================================== */
+.report-container {
+  padding: 1rem;
+  background-color: #f9fafb;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
+
+/* ================================
+   TOP SUMMARY CARDS
+=================================== */
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 5px solid #1e3a8a;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.summary-card h3 {
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.summary-card p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #111;
+}
+
+/* ================================
+   INVENTORY SUMMARY SECTION
+=================================== */
+.inventory-summary-report {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.inventory-summary-report h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #1f2937;
+}
+
+.inventory-summary-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.inventory-summary-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  border-left: 5px solid transparent;
+}
+
+.inventory-summary-item[data-status="Out of Stock"] {
+  border-left-color: #e74c3c;
+}
+
+.inventory-summary-item[data-status="Low Stock"] {
+  border-left-color: #f39c12;
+}
+
+.inventory-summary-item[data-status="Expired Products"] {
+  border-left-color: #8e44ad;
+}
+
+.inventory-summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ================================
+   FILTERS
+=================================== */
+.report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.3rem;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.export-pdf-btn {
+  padding: 0.75rem 1rem;
+  background: #1e3a8a;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.export-pdf-btn:hover {
+  background: #274bb3;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   CHARTS SECTION
+=================================== */
+.report-charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.chart-card {
+  flex: 1;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.chart-card h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: #1f2937;
+}
+
+/* ================================
+   RECENT ACTIVITY
+=================================== */
+.recent-section {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.recent-section h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: #1f2937;
+}
+
+/* ================================
+   RESPONSIVE
+=================================== */
+@media screen and (max-width: 768px) {
+  .report-charts {
+    flex-direction: column;
+  }
 }

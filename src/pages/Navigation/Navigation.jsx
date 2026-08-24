@@ -12,68 +12,67 @@ import "./Navigation.css";
 import { LocalShipping, MoneyOff } from "@mui/icons-material";
 
 export const Navigation = () => {
-  
   return (
     <div className="nav-layout">
       <ul>
         <li className="list-item">
           <Link to="/dashboard" className="link">
-          <DashboardIcon/>
+            <DashboardIcon />
             <span>Dashboard</span>
           </Link>
         </li>
         <li className="list-item">
           <Link to="/inventory" className="link">
-          <InventoryIcon/>
+            <InventoryIcon />
             <span>Inventory</span>
           </Link>
         </li>
-        <li className="list-item" >
+        <li className="list-item">
           <Link to="/sales" className="link">
-           <ShoppingCartIcon/>
+            <ShoppingCartIcon />
             <span>Sales</span>
           </Link>
         </li>
-        <li className="list-item" >
+        <li className="list-item">
           <Link to="/sales" className="link">
-           <MoneyOff/>
+            <MoneyOff />
             <span>Expenses</span>
           </Link>
         </li>
         <li className="list-item">
           <Link to="/customers" className="link">
-          <PeopleIcon/>
+            <PeopleIcon />
             <span>Customers</span>
           </Link>
         </li>
         <li className="list-item">
           <Link to="/medicine" className="link">
-          <LocalPharmacyIcon/>
+            <LocalPharmacyIcon />
             <span>Medicine</span>
           </Link>
         </li>
         <li className="list-item">
           <Link to="/suppliers" className="link">
-          <LocalShipping/>
+            <LocalShipping />
             <span>Suppliers</span>
           </Link>
         </li>
-        
+
         <li className="list-item">
           <Link to="/report" className="link">
-          <BarChartIcon/>
+            <BarChartIcon />
             <span>Reports</span>
           </Link>
         </li>
         <li className="list-item">
           <Link to="/settings" className="link">
-          <SettingsIcon/>
+            <SettingsIcon />
             <span>Settings</span>
           </Link>
         </li>
         <li className="list-item">
           <Link className="link" to="/logout">
-          <LogoutIcon/>
+            <LogoutIcon />
             <span>Logout</span>
           </Link>
         </li>
